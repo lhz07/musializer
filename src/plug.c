@@ -11,6 +11,7 @@
 #include "ffmpeg.h"
 #define NOB_IMPLEMENTATION
 #define NOB_STRIP_PREFIX
+// #define NOB_WARN_DEPRECATED
 #include "thirdparty/nob.h"
 #include "thirdparty/tinyfiledialogs.h"
 

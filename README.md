@@ -37,11 +37,11 @@ https://github.com/tsoding/musializer/assets/165283/8b9f9653-9b3d-4c04-9569-338f
 External Dependencies:
 - [ffmpeg](https://ffmpeg.org/) executable available in `PATH` environment variable. It is called as a child process during the rendering of the videos. So if you don't plan to render any videos it's completely **optional**.
 
-We are using Custom Build System written entirely in C called `nob`. It is similar to [nobuild](https://github.com/tsoding/nobuild) in spirit. [nob.h](./src/nob.h) is the Build System and [nob.c](./nob.c) is the program that builds Musializer.
+We are using Custom Build System written entirely in C called `nob`. [nob.c](./nob.c) is the program that builds Musializer. For more info on this Build System see the [nob.h repo](https://github.com/tsoding/nob.h).
 
 Before using `nob` you need to bootstrap it. Just compile it with the available C compiler. On Linux it's usually `$ cc -o nob nob.c` on Windows with MSVC from within `vcvarsall.bat` it's `$ cl.exe nob.c`. You only need to boostrap it once. After the bootstrap you can just keep running the same executable over and over again. It even tries to rebuild itself if you modify [nob.c](./nob.c) (which may fail sometimes, so in that case be ready to reboostrap it).
 
-I really recommend to read [nob.c](./nob.c) and [nob.h](./src/nob.h) to get an idea of how it all actually works. The Build System is a work in progress, so if something breaks be ready to dive into it.
+I really recommend to read [nob.c](./nob.c) and [nob.h](https://github.com/tsoding/nob.h) to get an idea of how it all actually works. The Build System is a work in progress, so if something breaks be ready to dive into it.
 
 ### Linux and OpenBSD
 
@@ -93,4 +93,4 @@ $ ./build/musializer
 
 Keep the app running. Rebuild with `./nob`. Hot reload by focusing on the window of the app and pressing <kbd>h</kbd>.
 
-The way it works is by putting the majority of the logic of the application into a `libplug` dynamic library and just reloading it when requested. The [rpath](https://en.wikipedia.org/wiki/Rpath) (aka hard-coded run-time search path) for that library is set to `.` and `./build/`. See [src/nob_linux.c](src/nob_linux.c) for more information on how everything is configured.
+The way it works is by putting the majority of the logic of the application into a `libplug` dynamic library and just reloading it when requested. The [rpath](https://en.wikipedia.org/wiki/Rpath) (aka hard-coded run-time search path) for that library is set to `.` and `./build/`. See [src_build/nob_linux.c](src_build/nob_linux.c) for more information on how everything is configured.

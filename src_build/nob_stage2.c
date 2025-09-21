@@ -2,6 +2,7 @@
 
 #define NOB_IMPLEMENTATION
 #define NOB_STRIP_PREFIX
+// #define NOB_WARN_DEPRECATED
 #include "../thirdparty/nob.h"
 #include "../build/config.h"
 #include "./configurer.c"
@@ -188,7 +189,7 @@ int main(int argc, char **argv)
                     nob_cmd_append(&cmd, "-resize", nob_temp_sprintf("%d", svgs[i].resize));
                 }
                 nob_cmd_append(&cmd, svgs[i].out_path);
-                nob_da_append(&procs, nob_cmd_run_async(cmd));
+                if (!nob_cmd_run(&cmd, .async = &procs)) return 1;
             } else {
                 nob_log(NOB_INFO, "%s is up to date", svgs[i].out_path);
             }
